@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<!-- Menu Actions -->
+        <menuitem
+            id="crm.crm_menu_root"
+            name="Prospects"
+            web_icon="crm,static/description/icon.png"
+            action="investors_dashboard.investors_dashboard_action_main"
+            sequence="1"/>
+            <!-- groups="sales_team.group_sale_salesman,sales_team.group_sale_manager" action="crm.action_your_pipeline"-->
+
+       <!-- Dashboard -->
+       <!--  <menuitem
+            action="crm_dashboard.action_crm_dashboard"
+            id="my_dash_1_project"
+            name="My Dashboard"
+            parent="crm.crm_menu_root"
+            sequence="2"/> -->
+
+        <!--<menuitem
+            action="helpdesk.helpdesk_team_dashboard_action_main"
+            id="my_dash_1_project"
+            name="My Dashboard"
+            parent="crm.crm_menu_root"
+            sequence="2"/>-->
+
+        <menuitem
+            id="crm.crm_menu_sales"
+            name="Prospect Sales"
+            parent="base.next_id_2"
+            sequence="6"
+            groups=""/>
+
+        <menuitem id="crm.res_partner_menu_customer"
+            name="Customers"
+            parent="base.next_id_2"
+            action="base.action_partner_form"
+            sequence="5"/>
+
+
+        <menuitem id="my_feed_investors"
+            name="My Feed"
+            sequence="3"
+            parent="crm.crm_menu_sales"
+            action="mail.mail_channel_action_client_chat"
+        />
+
+        <!-- Prospect Menu -->
+
+        <menuitem
+            id="crm.menu_crm_opportunities"
+            action="crm.action_your_pipeline"
+            name="Prospects"
+            parent="crm.crm_menu_root"
+            sequence="4"/>
+
+       <!--  <menuitem
+            id="project_inherit"
+            name="Projects"
+            action="project.open_view_project_all_config"
+            parent="crm.crm_menu_root"
+            sequence="6" /> -->
+
+
+
+        <menuitem
+            id="crm.investor_menu_opportunities"
+            action="crm.action_your_pipeline"
+            name="Prospect Pipeline"
+            parent="crm.crm_menu_sales"
+            sequence="3"/>
+
+
+        <!-- Company -->
+        <menuitem
+            action="res_partner_addons.action_res_partner_company"
+            id="company_invest_menu"
+            name="Investments"
+            parent="crm.crm_menu_root"
+            sequence="7"/>
+
+        <!-- Issues -->
+        <menuitem
+            action="helpdesk.helpdesk_ticket_action_main_tree"
+            id="issuses_invest_menu"
+            name="Issues"
+            parent="crm.crm_menu_root"
+            sequence="9"/>
+
+        <!-- Others -->
+        <menuitem
+            id="investor_contact.investor_others_menu"
+            name="Other"
+            parent="crm.crm_menu_root"
+            sequence="21"/>
+
+        <!-- Contacts -->
+        <menuitem
+            action="investor_contact.action_prospect_contacts"
+            id="contacts_invest_menu"
+            name="Contacts"
+            parent="investor_contact.investor_others_menu"
+            sequence="22"/>
+            <!-- Documents -->
+        <menuitem
+            action="muk_dms.action_dms_documents"
+            id="documents_invest_menu"
+            name="Documents"
+            parent="investor_contact.investor_others_menu"
+            sequence="23"/>
+
+            <!-- Settings -->
+
+            <!-- Campaigns -->
+        <!-- <menuitem
+            action="marketing_campaign.action_marketing_campaign_form"
+            id="campaigns_invest_menu"
+            name="Campaigns"
+            parent="crm.crm_menu_root"
+            sequence="8"/> -->
+
+        <!--  <menuitem
+            id="crm.menu_crm_leads"
+            name="Investorzs"
+            sequence="4"
+            action="crm.crm_lead_opportunities"
+            parent="crm.crm_menu_root"
+            groups="crm.group_use_lead"/> -->
+
+<!-- OLD DEFAULT CRM MENUITEMS -->
+
+
+        <menuitem
+            name="Prospect Configuration"
+            id="crm.crm_menu_config"
+            parent="investor_contact.investor_others_menu"
+            sequence="35"
+            groups="sales_team.group_sale_manager"/>
+
+        <!-- Investor Source -->
+        <menuitem
+            name="Prospect Source"
+            action="investor_contact.investor_source_extend_action_inquiry"
+            id="investor_source_extend_invest_menu"
+            parent="crm.crm_menu_config"
+            sequence="27"
+            groups="sales_team.group_sale_manager"/>
+
+        <!-- Referral Type  -->
+        <menuitem
+            name="Prospect Referral Type"
+            action="investor_contact.investor_reftype_extend_action_inquiry"
+            id="investor_reftype_extend_invest_menu"
+            parent="crm.crm_menu_config"
+            sequence="29"
+            groups="sales_team.group_sale_manager"/>
+
+            <!-- formerly known as  Sales Team-->
+
+        <menuitem id="crm.crm_team_config"
+            name="Department Teams"
+            parent="crm.crm_menu_sales"
+            action="sales_team.sales_team_config_action"
+            sequence="5"
+            groups="investor_hidden_menu"/>
+            <!-- parent="crm.crm_menu_config" -->
+
+        <menuitem
+            id="crm.menu_crm_lead_categ"
+            name="Prospect Tags"
+            action="crm.crm_lead_tag_action"
+            parent="crm.crm_menu_config"
+            sequence="1"
+            groups="sales_team.group_sale_manager"/>
+
+        <menuitem
+            id="crm.menu_crm_lead_stage_act"
+            name="Prospect Stages"
+            sequence="0"
+            action="crm.crm_stage_action"
+            parent="crm.crm_menu_config"
+            groups="sales_team.group_sale_manager"/>
+
+        <menuitem
+            id="crm.menu_crm_config_lead"
+            name="Prospect Works"
+            parent="crm.crm_menu_config"
+            sequence="45"
+            groups="investor_hidden_menu"/>
+
+
+        <menuitem
+            id="crm.crm_menu_pipeline"
+            name="Prospect"
+            parent="crm.crm_menu_sales"
+            action="crm.crm_lead_opportunities_tree_view"
+            sequence="2"/>
+
+        <!-- <menuitem
+            id="menu_inquiry_top"
+            name="Prospect Meet Form"
+            parent="crm.crm_menu_sales"
+            sequence="2"/> -->
+
+        <!-- <menuitem
+            id="menu_inquiry"
+            action="action_inquiry"
+            name="Prospect Meet"
+            parent="crm.crm_menu_sales"
+            sequence="2"/> -->
+
+        <menuitem
+            id="crm.menu_crm_config_opportunity"
+            name="Prospect Opportunities"
+            parent="crm.crm_menu_sales"
+            sequence="1"
+            groups="sales_team.group_sale_manager"/>
+
+        <menuitem id="crm.crm_menu_report"
+            name="Prospect Reporting"
+            parent="crm.crm_menu_sales"
+            sequence="20"
+            groups="investor_hidden_menu"
+            />
+            <!-- groups="investor_contact.hidden_menu" -->
+            <!-- How to hide a Menu Item -->
+        <!-- <record id="crm.crm_menu_report" model="ir.ui.menu">
+		  <field name="groups_id" eval="[(6, 0, [ref('hidden_menu')] )]"/>
+		</record> -->
+<!--
+		<menuitem id="crm.res_partner_menu_customer"
+            name="Customers"
+            parent="crm.crm_menu_sales"
+            action="base.action_partner_form"
+            sequence="21"
+            />		 -->
+
+         <menuitem id="crm.crm_config_settings_menu"
+            name="Prospect Settings"
+            parent="crm.crm_menu_sales"
+            action="crm.crm_config_settings_action"
+            groups="base.group_system"
+            sequence="0"/>
+
+
+<!--
+         Sales Team Menuitem Rename -->
+<!-- name="Sales Channels" -->
+
+
+        <menuitem id="crm.sales_team_menu_report_crm"
+            name="Department Teams"
+            parent="crm.crm_menu_sales"
+            action="sales_team.crm_team_salesteams_act"
+            sequence="10"
+            groups="investor_hidden_menu"/>
+
+
+
+    </data>
+</odoo>

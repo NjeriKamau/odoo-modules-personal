@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="crm_dashboard.dashboard">
+        <!--View-->
+        <div class="hr_dash col-xs-12 col-md-12 col-lg-12 col-sm-12">
+            <!--<style type="text/css" t-if="! widget.isFirefox">-->
+                <!--.o_control_panel.o_breadcrumb_full {-->
+                    <!--display: none;-->
+                <!--}-->
+            <!--</style>-->
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <div class="media">
+                        <a class="pull-left my_profile">
+                            <img class="media-object dp img-circle"
+                                 t-att-src="'data:image/png;base64,'+widget.employee_data.image"
+                                 style="width: 100px;height:100px;"/>
+                        </a>
+                        <div class="media-body">
+
+                           <h4 class="media-heading"><span t-esc="widget.employee_data.display_name"/></h4>
+                            <h5 t-if="widget.employee_data.job_id"><span t-esc="widget.employee_data.job_id[1]"/></h5>
+                            <h5><span t-esc="widget.employee_data.public_info"/></h5>
+                            <hr style="margin:8px auto"/>
+                            <t t-foreach="widget.employee_data.categories" t-as="c">
+                                <span class="label label-default"><t t-esc="c"/></span>
+                            </t>
+                            <br/>
+                            <span><small>Last login:<span t-esc="widget.employee_data.last_login"/></small></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Dashboard buttons-->
+                <div class="col-md-8" style="padding-top: 16px">
+                    <div class="container-fluid">
+                      <div class="row">
+
+                        <div id="total_tasks" class="col-md-3 col-sm-6">
+                          <a href="#" class="dashboard-block payslip_1">
+                            <div class="rotate">
+                              <i class="fa fa-money"></i>
+                            </div>
+                            <div class="details my_pending_tasks">
+                              <span class="title">Total Tasks</span>
+                              <span class="sub"><t t-esc="widget.employee_data.total_tasks"/></span>
+                            </div><!--/details-->
+                            <i class="fa fa-chevron-right fa-2x more"></i>
+                          </a><!--/dashboard-block2-->
+                        </div>
+
+                            <div id="total_requests_div" class="col-md-3 col-sm-6">
+                          <a href="#" class="dashboard-block contract_1">
+                            <div class="rotate">
+                              <i class="fa fa-fw fa-book"></i>
+                            </div>
+                            <div class="details pending_requests">
+                              <span class="title">Total Issues</span>
+                              <span class="sub"><t t-esc="widget.employee_data.total_requests"/></span>
+                            </div><!--/details-->
+                            <i class="fa fa-chevron-right fa-2x more"></i>
+                          </a>
+                        </div>
+
+
+                           <div id="total_investors_div" class="col-md-3 col-sm-6">
+                          <a href="#" class="dashboard-block leaves-left_1">
+                            <div class="rotate">
+                              <i class="fa fa-fw fa-calendar"/>
+                            </div>
+                            <div class="details my_investors">
+                              <span class="title">Total Investors</span>
+                              <span class="sub"><t t-esc="widget.employee_data.total_investors"/> </span>
+                            </div><!--/details-->
+                            <i class="fa fa-chevron-right fa-2x more"></i>
+                          </a><!--/dashboard-block1-->
+                        </div>
+
+
+                        <div id="total_projects_div" class="col-md-3 col-sm-6">
+                          <a href="#" class="dashboard-block timesheet_1">
+                            <div class="rotate">
+                              <i class="fa fa-clock-o"></i>
+                            </div>
+                            <div class="details total_projects">
+                              <span class="title">Total Projects</span>
+                              <span class="sub"><t t-esc="widget.employee_data.total_projects"/></span>
+                            </div><!--/details-->
+                            <i class="fa fa-chevron-right fa-2x more"></i>
+                          </a><!--/dashboard-block3-->
+                        </div>
+
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--dashboard boxes-->
+            <div class="col-md-12">
+                <div class="container">
+                    <div class="row">
+                        <div id="my_tasks_div" class="col-md-4">
+                            <div class="dash">
+
+                                <span class="dash-box-title"> <h1> My Tasks </h1></span>
+                                    <canvas id="my_tasks_dashboard" width="50px" height="50px"/>
+
+
+                                <div class="dash-box-action my_pending_tasks">
+                                    <button>More Info</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                         <div id="my_requests_div" class="col-md-4">
+
+                                 <div class="dash">
+
+                                 <span class="dash-box-title"> <h1>  My Issues </h1></span>
+                                    <canvas id="my_requests_dashboard" width="50px" height="50px"/>
+
+                                <div class="dash-box-action pending_requests">
+                                    <button>More Info</button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div id="my_investors_div" class="col-md-4">
+                            <div class="dash">
+
+                                 <span class="dash-box-title"> <h1> My Investors </h1></span>
+                                    <canvas id="my_investors_dashboard" width="50px" height="50px"/>
+
+                                <div class="dash-box-action my_investors">
+                                    <button>More Info</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="my_companies_div" class="col-md-4">
+                            <div class="dash">
+
+                                 <span class="dash-box-title"> <h1> My Companies </h1></span>
+                                    <canvas id="my_companies_dashboard" width="50px" height="50px"/>
+
+                                <div class="dash-box-action companies">
+                                    <button>More Info</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                         <div id="my_projects_div" class="col-md-4">
+                            <div class="dash">
+
+                                 <span class="dash-box-title"> <h1> My Projects </h1></span>
+                                    <canvas id="my_projects_dashboard" width="50px" height="50px"/>
+
+                                <div class="dash-box-action total_projects">
+                                    <button>More Info</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+
+
+
+                    </div>
+
+
+                    <!-- <div class="row">
+                        <div class="col-md-4">
+                            <div class="dash-box dash-box-color-4">
+                                <div class="dash-box-icon">
+                                    <i class="fa fa-calendar"/>
+                                </div>
+                                <div class="dash-box-body">
+                                    <span class="dash-box-count">
+                                        <t t-esc="widget.employee_data.total_my_inbox"/>
+                                    </span>
+                                    <span class="dash-box-title">Inbox</span>
+                                </div>
+
+                                <div class="dash-box-action total_my_inbox">
+                                    <button>More Info</button>
+                                </div>
+                            </div>
+                        </div>
+
+                          <div class="col-md-4">
+                            <div class="dash-box dash-box-color-3">
+                                <div class="dash-box-icon">
+                                    <i class="fa fa-calendar"/>
+                                </div>
+                                <div class="dash-box-body">
+                                    <span class="dash-box-count">
+                                        10 <t t-esc="widget.employee_data.leaves_alloc_to_approve"/>
+                                    </span>
+                                    <span class="dash-box-title">Meetings</span>
+                                </div>
+
+                                <div class="dash-box-action leave_allocations">
+                                    <button>More Info</button>
+                                </div>
+                            </div>
+                        </div>
+
+                     </div> -->
+
+
+                </div>
+            </div>
+
+            <!--Charts-->
+            <!--label for charts-->
+            <div class="main-content">
+				<div class="container-fluid">
+
+                </div>
+          </div>
+        </div>
+    </t>
+</templates>

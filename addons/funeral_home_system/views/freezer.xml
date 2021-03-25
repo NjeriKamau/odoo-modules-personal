@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- List (Tree) View - Freezer -->
+        <record id="view_funeral_home_freezer_tree" model="ir.ui.view">
+            <field name="name">funeral_home.freezer.tree</field>
+            <field name="model">funeral_home.freezer</field>
+            <field name="arch" type="xml">
+                <tree delete="false">
+                    <field name="model_name" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View - Freezer -->
+        <record id="view_funeral_home_freezer_form" model="ir.ui.view">
+            <field name="name">funeral_home.freezer.form</field>
+            <field name="model">funeral_home.freezer</field>
+            <field name="arch" type="xml">
+                <form string="Freezer">
+                    <sheet name="fh_freezer_form_sheet_id">
+                        <group>
+                            <field name="model_name" />
+                            <field name="trays" />
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <!-- <field name="activity_ids" widget="mail_activity"/> -->
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- List (Tree) View - Freezer Tray -->
+        <record id="view_funeral_home_freezer_tray_tree" model="ir.ui.view">
+            <field name="name">funeral_home.freezer.tray.tree</field>
+            <field name="model">funeral_home.freezer.tray</field>
+            <field name="arch" type="xml">
+                <tree delete="false">
+                    <field name="tray_slug" />
+                    <field name="occupied" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View - Freezer Tray -->
+        <record id="view_funeral_home_freezer_tray_form" model="ir.ui.view">
+            <field name="name">funeral_home.freezer.tray.form</field>
+            <field name="model">funeral_home.freezer.tray</field>
+            <field name="arch" type="xml">
+                <form string="Freezer Tray">
+                    <group>
+                        <field name="tray_slug" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action Definition -->
+        <record id="action_funeral_home_freezer" model="ir.actions.act_window">
+            <field name="name">Freezer</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">funeral_home.freezer</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu Placement -->
+        <menuitem id="freezer_menu" name="Freezer" parent="menu_funeral_home_inventory" action="action_funeral_home_freezer" sequence="23"/>
+    </data>
+</odoo>

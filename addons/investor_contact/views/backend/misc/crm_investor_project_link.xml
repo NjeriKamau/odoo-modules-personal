@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<record id="investor_project_edit_link" model="ir.ui.view">
+            <field name="name">Prospect Projects Form</field>
+            <field name="model">project.project</field>
+            <field name="arch" type="xml">
+                <form string="Project">
+                    <header>
+
+                        <!-- <button name="confirm"  string="Confirm" states="draft" type="object"  class="oe_highlight"/>
+                        <button name="committed"  string="Mark as Committed" states="operation" type="object"  class="oe_highlight"/>
+                        <button name="implement"  string="Implementation" states="committed" type="object"  class="oe_highlight"/>
+                        <button name="done"  string="Done" states="implement" type="object"  class="oe_highlight"/>
+                        <button name="abandon"  string="Abandon" states="draft,operation,committed, ,implement,done,abandon" type="object"  /> -->
+                        <field name="stage_id" clickable="True" widget="statusbar"  />
+                    </header>
+
+                    <sheet string="Project">
+                        <div class="o_notebook">
+
+                                <div class="tab-pane active" id="portlet_tab_project">
+                                    <field name="analytic_account_id" invisible="1" required="0"/>
+                                    <div class="clearfix"></div>
+
+                                    <div class="oe_button_box" name="button_box" groups="base.group_user">
+                                        <button class="oe_stat_button" type="action"
+                                            name="%(project.act_project_project_2_project_task_all_project)d" icon="fa-tasks">
+                                            <field string="Tasks" name="task_count" widget="statinfo" options="{'label_field': 'label_tasks'}"/>
+                                        </button>
+
+                                        <button name="project.toggle_active" type="object"
+                                            confirm="(Un)archiving a project automatically (un)archives its tasks and issues. Do you want to proceed?"
+                                            class="oe_stat_button" icon="fa-archive">
+
+                                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                                        </button>
+                                    </div>
+
+                                    <div class="oe_title">
+                                        <h1>
+
+                                            <field  name="name" placeholder="Project XYZ"/>
+                                        </h1>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <h1>
+                                                <label for="name" string="INVESTMENT AMOUNT($)"/>
+
+                                                 <field  required="1" name="project_investment_amount" placeholder="3000" />
+                                        </h1>
+                                        </div>
+                                         <div class="col-md-4">
+                                            <h1>
+                                                 <label for="name" string="TOTAL JOBS($)"/>
+
+                                            <field  required="1" name="project_job_created" placeholder="30" />
+                                        </h1>
+                                             <label for="name" string="Indirect:" />
+                                             <field name="indirect" /> <br/>
+
+                                             <label for="name" string="Multiplier:" />
+                                             <field name="multiplier" />
+
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <h1>
+                                                <label for="name" string="Export Potential($)"/>
+                                            <field name="export_potential" />
+                                        </h1>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <group>
+
+                                                    <label for="name" string="Probability(%)"/>
+
+                                                     <div>
+                                                        <field  required="1" name="probability"  />
+                                                     </div>
+
+
+                                            </group>
+
+                                             <group>
+                                                     <field name="est_date_of_registration" string="Est Registration Date" />
+                                             </group>
+
+
+                                            <group>
+                                                <field name="project_priority" string="Priority" widget="priority"/>
+                                                <field name="project_status"  required="1"  string="Status"/>
+                                                <field name="type_of_project" string="Project Type" />
+                                                <field name="investor_sector" string="Sector"/>
+                                                <field name="investor_sub_sector" string="Sub-Sector" />
+                                                <field name="tag_projects_ids" string="Tags" widget="many2many_tags"
+                                                       options="{'color_field': 'color'}"/>
+                                                <field name="special_incentives" string="Special Incentives" />
+
+                                            </group>
+
+                                            <group string="DEAL TEAM">
+                                                 <field name="user_id" readonly="0" required="1" string="Deal Lead"/> <!--attrs="{'readonly':[('active','=',False)]} -->
+                                                <field name="tag_user_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"
+                                                       string="Deal Team" />
+
+                                                 <field string="Followers" name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+
+
+                                            </group>
+
+
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <h2>PROSPECTS</h2>
+                                                <field readonly="0" string=""    name="investor_ids">
+                                                <!--<kanban quick_create="false" create="true">
+                                                        <templates>
+
+
+                                                            <t t-name="kanban-box">
+
+
+                                                                     <div t-attf-class="oe_kanban_global_click">
+                                                                <div style="position: relative">
+                                                                    <a t-if="! read_only_mode" type="delete" style="position: absolute; right: 0; padding: 4px; diplay: inline-block"><i class="fa fa-times text-danger"/></a>
+                                                                    <div class="oe_module_vignette">
+                                                                        <div class="oe_module_desc o_kanban_record_title">
+                                                                            <ul>
+                                                                                <li>Name : <field string="Name" name="name" /></li>
+                                                                                <li>Invested In Rwanda : <field string="Invested In Rwanda" name="invested_in_rwa" /></li>
+                                                                                <li>Country: <field string="Country" name="country_id" /></li>
+                                                                            </ul>
+
+
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                </div>
+
+
+                                                            </t>
+
+                                                        </templates>
+                                                </kanban> -->
+
+                                                     <tree>
+
+
+                                                                <field string="Name" name="name" />
+                                                             <field string="Invested In Rwanda" name="invested_in_rwa" />
+                                                            <field string="Country" name="country_id" />
+
+                                                        </tree>
+
+
+
+                                                </field>
+
+                                             <button name="create_an_investor_action_from_project" icon="fa-add"
+                                                     type="object" string="+ Add " class="oe_highlight"/>
+
+                                        </div>
+
+                                        <div class="col-md-6">
+
+                                            <h2> TASKS </h2>
+                                                <field readonly="0" string="" name="task_ids">
+                                                        <tree>
+                                                            <field string="Task" name="name" />
+                                                             <field string="Due Date" name="date_deadline" />
+                                                            <field string="Owner" name="user_id" />
+                                                        </tree>
+                                                </field>
+
+                                                    <button name="project_tasks_open_action"
+                                                            icon="fa-add" type="object" string="+ Add" class="oe_highlight"/>
+
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <group>
+                                                <field required="1" placeholder="Enter project short description here..." string="Short Description" name="project_description" />
+                                            </group>
+                                        </div>
+                                    </div>
+
+                                    <notebook>
+                                        <page name="activity" string="Activity , History and Notes ">
+                                            <field name="deparment_id" invisible="1" />
+
+                                           <div class="oe_chatter">
+                                            <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                                            <!--<field name="activity_ids" widget="mail_activity"/> -->
+                                            <field name="message_ids" widget="mail_thread"/>
+                                          </div>
+                                        </page>
+
+                                        <page string="Contacts">
+
+                                           <!--  <button name="create_new_contact_action" icon="fa-add"
+                                                     type="object" string="+ Add " class="oe_highlight"/> -->
+
+
+                                           <field context="{'form_view_ref':'project_extend.custom_partner_view_project'}" name="contact_ids"> <!--context="{'form_view_ref':'support_ticket_extend.custom_partner_view'}"> -->
+                                                <tree>
+                                                  <field name="name" />
+                                                    <field name="phone" />
+                                                    <field name="email" />
+                                                    <field name="function" />
+                                                    <field name="website" />
+                                              </tree>
+                                            </field>
+                                        </page>
+
+                                        <page string="Documents">
+
+                                              <group>
+                                                <field  name="document_upload" />
+                                                <field  name="document_extras" />
+                                            </group>
+
+                                        </page>
+                                    </notebook>
+                                </div>
+                                <!-- End Tab -->
+                            </div>
+                            <footer>
+                                <button name="save_project_from_investor"  type="object" class="btn-primary">
+                                      Save and Close
+                                </button>
+                                <button string="Cancel" class="btn-default" special="cancel"/>
+                            </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

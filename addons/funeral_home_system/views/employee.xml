@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- List (Tree) View - De-Brief -->
+        <record id="view_funeral_home_debrief_tree" model="ir.ui.view">
+            <field name="name">funeral_home.debrief.tree</field>
+            <field name="model">funeral_home.debrief</field>
+            <field name="arch" type="xml">
+                <tree delete="false">
+                    <field name="employee" />
+                    <field name="visit" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- List (Tree) View - Immunisation -->
+        <record id="view_funeral_home_immunisation_tree" model="ir.ui.view">
+            <field name="name">funeral_home.immunisation.tree</field>
+            <field name="model">funeral_home.immunisation</field>
+            <field name="arch" type="xml">
+                <tree delete="false">
+                    <field name="employee" />
+                    <field name="vaccine_type" />
+                    <field name="date_given" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View - De-Brief -->
+        <record id="view_funeral_home_debrief_form" model="ir.ui.view">
+            <field name="name">funeral_home.debrief.form</field>
+            <field name="model">funeral_home.debrief</field>
+            <field name="arch" type="xml">
+                <form string="De-Brief">
+                    <sheet name="fh_debrief_form_sheet_id">
+                        <group>
+                            <field name="employee" />
+                            <field name="visit" />
+                            <field name="comments" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Form View - Immunisation -->
+        <record id="view_funeral_home_immunisation_form" model="ir.ui.view">
+            <field name="name">funeral_home.immunisation.form</field>
+            <field name="model">funeral_home.immunisation</field>
+            <field name="arch" type="xml">
+                <form string="Immunisation">
+                    <sheet name="fh_immunisation_form_sheet_id">
+                        <group>
+                            <field name="employee" />
+                            <field name="vaccine_type" />
+                            <field name="route" />
+                            <field name="site" attrs="{'invisible':[('route','!=','IM'), ('route','!=','SC'), ('route','!=','ID')]}" />
+                        </group>
+                        <group string="Vaccine Information Statement">
+                            <field name="date_on_vis" />
+                            <field name="date_given" />
+                            <field name="lot_no" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action Definition: De-Brief -->
+        <record id="action_funeral_home_debrief" model="ir.actions.act_window">
+            <field name="name">De-Brief</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">funeral_home.debrief</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Action Definition: Immunisation -->
+        <record id="action_funeral_home_immunisation" model="ir.actions.act_window">
+            <field name="name">Immunisation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">funeral_home.immunisation</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu Placement -->
+        <menuitem id="debrief_menu" name="De-Brief" parent="menu_funeral_home_employee" action="action_funeral_home_debrief" sequence="32"/>
+        <menuitem id="immunisation_menu" name="Immunisation" parent="menu_funeral_home_employee" action="action_funeral_home_immunisation" sequence="34"/>
+    </data>
+</odoo>

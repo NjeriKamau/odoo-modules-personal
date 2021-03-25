@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Admission Tag Number -->
+        <record model="ir.sequence" id="seq_fh_admission_tag_id">
+            <field name="name">Admission Tag Number</field>
+            <field name="code">funeral_home.admission</field>
+            <field name="prefix">TAG/</field>
+            <field name="padding">5</field>
+        </record>
+
+        <!-- Repatriation -->
+        <record model="ir.sequence" id="seq_fh_repatriation_id">
+            <field name="name">Repatriation Number</field>
+            <field name="code">funeral_home.repatriation</field>
+            <field name="prefix">REP/</field>
+            <field name="padding">5</field>
+        </record>
+    </data>
+</odoo>

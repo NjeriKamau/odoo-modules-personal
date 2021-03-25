@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Top menu item -->
+        <menuitem id="menu_funeral_home_root" name="Funeral Home" sequence="1" groups="base.group_user"/>
+
+        <!-- Child Menu Items item -->
+        <menuitem id="menu_funeral_home_admission" name="Admission and Acceptance" parent="menu_funeral_home_root" />
+        <menuitem id="menu_funeral_home_inventory" name="Inventory" parent="menu_funeral_home_root" />
+        <menuitem id="menu_funeral_home_employee" name="Employee Management" parent="menu_funeral_home_root" />
+    </data>
+</odoo>

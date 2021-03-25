@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <!-- ======== Funeral Home Admission ======== --> 
+    <!-- funeral_home admission form -->
+    <record id="view_funeral_home_admission_form" model="ir.ui.view">
+        <field name="name">funeral_home.admission.form</field>
+        <field name="model">funeral_home.admission</field>
+        <field name="arch" type="xml">
+            <form name="fh_admission_form_id" string="Admission">
+            <!-- <header>
+              <button name="action_confirm" type="object"
+                  string="Confirm" states="draft" class="oe_highlight" />
+              <button name="action_cancel" string="Cancel Clearance"
+                  states="draft, open" class="oe_highlight" type="object" />
+              <button name="action_invoice" string="Generate Invoice" states="open"
+                  class="oe_highlight" type="object" />
+              <button name="action_receipt" string="Send Receipt by Mail"
+                  states="paid,released" class="oe_highlight" type="object" />
+              <button name="action_receipt" string="Print Receipt"
+                  states="paid,released" class="oe_highlight" type="object" />
+              <button name="action_clear" string="Clear"
+                  states="paid" class="oe_highlight" type="object" />
+              <field name="state" widget="statusbar" clickable="True" statusbar_visible="draft,open,paid,released" />
+            </header> -->
+            <header>
+                <button name="create_clearance" class="oe_highlight" type="object" string="Create Clearance Form" />
+            </header>
+            <sheet name="fh_admission_form_sheet_id">
+                <group>
+                    <group>
+                        <!-- <label string="Date/Time" for="date_fh_order" /> -->
+                        <field name="date_fh_order" />
+                    </group>
+                    <group>
+                        <!-- <label string="Admission/Tag No"/> -->
+                        <!-- <h2> -->
+                        <field name="fh_admission_tag_no"/>
+                        <!-- </h2> -->
+                    </group>
+                </group>  
+                <group>
+                    <group>
+                        <field name="fh_name_of_deceased"/>
+                        <field name="fh_client_sex"/>
+                        <field name="date_fh_of_birth"/>
+                        <field name="date_fh_of_death"/>
+                        <field name="fh_client_age"/>
+                    </group>
+                    <group>
+                        <field name="fh_place_of_death"/>
+                        <field name="fh_id_passport_of_deceased"/>
+                    </group>
+                    <group>
+                        <field name="fh_nature_of_death"/>
+                    </group>                    
+                </group>
+                <notebook>
+                    <page string='Next of Kin'>
+                        <field name="fh_kin_details"/>
+                    </page>
+
+                    <page name='admission_form_services' string='Services'>
+                        <!-- <group colspan="4" col="4"> -->
+                        <group>
+                            <field name="fh_place_body_from"/>
+                            <field name="fh_postmortem_interval"/>
+                            <field name="fh_postmortem_done"/>
+                            <field name="fh_forensic_case"/>
+                        </group>
+                        <!-- <group colspan="4" col="4"> -->
+                        <group>
+                            <field name="fh_preservation_and_storage"/>
+                            <field name="fh_postmortem"/>
+                            <field name="fh_reconstruction"/>
+                            <field name="fh_cosmetics"/>
+                        </group>
+                        <group>
+                            <field name="fh_other_services"/>
+                        </group>
+                    </page>
+                </notebook>
+            </sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <!-- <field name="activity_ids" widget="mail_activity"/> -->
+                <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+            </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- List (Tree) view - Admission -->
+    <record model="ir.ui.view" id="view_funeral_home_admission_tree">
+        <field name="name">funeral_home.admission.tree</field>
+        <field name="model">funeral_home.admission</field>
+        <field name="arch" type="xml">
+            <tree string="Admission List">
+            <!-- <tree string="Admission List" decoration-info="fh_admission_tag_no"> -->
+
+                <field name="fh_admission_tag_no" />
+                <field name="fh_name_of_deceased" />
+                <field name="date_fh_order" />
+                <!-- <field name="fh_id_passport_of_kin" />
+                <field name="mobile" />
+                <field name="email"> -->
+            </tree>
+        </field>
+    </record>
+
+    
+    <!-- calendar view -->
+        <record model="ir.ui.view" id="admission_calendar_view">
+            <field name="name">funeral_home.admission.calendar</field>
+            <field name="model">funeral_home.admission</field>
+            <field name="arch" type="xml">
+                <calendar string="Admission Calendar" date_start="date_fh_order">
+                    <field name="fh_name_of_deceased"/>
+                </calendar>
+            </field>
+        </record>
+
+
+    <!-- Search view of funeral home Admission -->
+    <!-- <record id="view_funeral_home_filter" model="ir.ui.view">
+            <field name="name">funeral_home_admission_filter</field>
+            <field name="model">funeral_home.admission</field>
+            <field name="arch" type="xml">
+                <search string="Admission and Acceptance">
+                    <filter string="Current Admissions"
+                        domain="[('&gt;=',datetime.datetime.now().replace(hour=0, minute=0, second=0)),('date_fh_order','&lt;=',datetime.datetime.now().replace(hour=23, minute=59, second=59))]"
+                        help="Current Admissions" />
+
+                    <field name="fh_admission_tag_no" />
+                    <field name="fh_name_of_deceased" />
+                    <field name="date_fh_order" />  -->
+                    <!-- <field name="fh_name_of_kin" /> -->
+                    <!-- <field name="fh_id_passport_of_kin" /> -->
+                    <!-- <field name="fh_telephone_contact_kin" /> -->
+                    <!-- <group expand="0" string="Group By">
+                        <filter name="fh_name_of_deceased" string="Name" icon="terp-personal"
+                            domain="[]" context="{'group_by':'fh_name_of_deceased'}" />
+                        <filter string="Date" domain="[]"
+                            context="{'group_by':'date_fh_order'}" />
+                    </group>
+                </search>
+            </field>
+    </record> -->
+
+     
+    <!-- Action funeral_home admission action window-->
+    <!-- <record id="action_funeral_home_admission_tree_all" model="ir.actions.act_window">
+        <field name="name">Admission and Acceptance</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">funeral_home.admission</field>
+        <field name="view_mode">tree,form,gantt</field>
+    </record> -->
+    <record model="ir.actions.act_window" id="action_funeral_home_admission_tree_all">
+        <field name="name">Admission and Acceptance</field>
+        <field name="res_model">funeral_home.admission</field>
+            <!-- <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field> -->
+        <field name="view_mode">tree,form,calendar</field>
+    </record>
+
+
+    <!-- menu -->
+    <menuitem name="Admission" id="menu_action_funeral_home_admission_tree_all"
+        action="action_funeral_home_admission_tree_all" parent="menu_funeral_home_admission"
+        sequence="11" />
+
+  </data>
+</odoo>

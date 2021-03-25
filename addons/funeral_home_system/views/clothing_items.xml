@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_funeral_home_clothing_particulars_form" model="ir.ui.view">
+            <field name="name">funeral_home.clothing.particulars.form</field>
+            <field name="model">funeral_home.clothing.particulars</field>
+            <field name="arch" type="xml">
+                <form string="Clothing Particulars">
+                    <sheet name="fh_clothing_particulars_form_sheet_id">
+                        <group>
+                            <field name="clothe_name"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <!-- <field name="activity_ids" widget="mail_activity"/> -->
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="clothing_number_view_tree" model="ir.ui.view">
+            <field name="name">funeral_home.clothing.particulars.tree</field>
+            <field name="model">funeral_home.clothing.particulars</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="clothe_name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="clothing_number_action" model="ir.actions.act_window">
+            <field name="name">Clothing Particulars</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">funeral_home.clothing.particulars</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p>
+                    List of stored Clothing Items.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="clothing_number_menu" name="Clothing Items" parent="menu_funeral_home_inventory" action="clothing_number_action" sequence="22"/>
+    </data>
+</odoo>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="investor_source_extend">
+            <field name="name">Prospect Source</field>
+            <field name="model">investor.source</field>
+            <field name="arch" type="xml">
+                <form string="Source">
+                    <sheet>
+                        <group>
+                            <field name="name" string="Source Name"/>
+                            <field name="is_referral" string="This is a Referral"/>
+                            <field name="is_conference" string="This is a Conference"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <!-- <field name="activity_ids" widget="mail_activity"/> -->
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="investor_source_extend_tree_view">
+            <field name="name">Prospect Source</field>
+            <field name="model">investor.source</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" string="Source Name"/>
+                    <field name="is_referral" string="This is a Referral"/>
+                    <field name="is_conference" string="This is a Conference"/>
+
+                </tree>
+            </field>
+        </record>
+
+       <record id="investor_source_extend_action_inquiry" model="ir.actions.act_window">
+            <field name="name">Prospect Source</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">investor.source</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="investor_source_extend_tree_view"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click here to add a new source.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

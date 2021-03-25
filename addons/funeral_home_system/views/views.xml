@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="funeral_home_system.list">
+      <field name="name">funeral_home_system list</field>
+      <field name="model">funeral_home_system.funeral_home_system</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="funeral_home_system.action_window">
+      <field name="name">funeral_home_system window</field>
+      <field name="res_model">funeral_home_system.funeral_home_system</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="funeral_home_system.action_server">
+      <field name="name">funeral_home_system server</field>
+      <field name="model_id" ref="model_funeral_home_system_funeral_home_system"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="funeral_home_system" id="funeral_home_system.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="funeral_home_system.menu_1" parent="funeral_home_system.menu_root"/>
+    <menuitem name="Menu 2" id="funeral_home_system.menu_2" parent="funeral_home_system.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="funeral_home_system.menu_1_list" parent="funeral_home_system.menu_1"
+              action="funeral_home_system.action_window"/>
+    <menuitem name="Server to list" id="funeral_home_system" parent="funeral_home_system.menu_2"
+              action="funeral_home_system.action_server"/>
+-->
+  </data>
+</odoo>

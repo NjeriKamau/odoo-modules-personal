@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <templates xml:space="preserve"> -->
+<templates>
+    <!--
+        This template is the ribbon at the top of the prospect dashboard that adds
+        some figures to it. We call this rubbon the "Prospect Dashboard".
+    -->
+    <t t-name="investors.MyDashboard">
+        <div t-if="show_demo or values" class="o_investor_dashboard">
+            <div t-attf-class="#{show_demo ? 'o_demo' : ''}">
+                <table class="table">
+                    <caption></caption>
+                    <thead>
+                        <tr>
+                            <th class="o_main">
+                                <div style="font-size:15px;" class="o_highlight"> My Prospects</div>
+                            </th>
+                            <th title="Prospects Stages" class="o_main">
+                                <div style="font-size:15px;" class="o_highlight"> Total</div>
+                            </th>
+                            <th t-foreach="values['invest_stage_name']" t-as="item" class="o_main">
+                                <div style="font-size:15px;" class="o_highlight">
+                                    <span class="o_highlight" t-esc="item"></span><br/>
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr >
+                            <td class="o_text">
+                                <div style="font-size:15px;" class="o_highlight"> Total Prospects </div>
+                            </td>
+
+                            <td title="Total Prospects" class="o_main">
+                                <a href="#" class="o_dashboard_action" name="crm.action_your_pipeline">
+                                    <span class="o_highlight" t-esc="values['total_investors']"></span><br/>
+                                </a>
+                            </td>
+
+                            <td t-foreach="values['investor_stage_count']" t-as="item" class="o_main">
+                                    <a href="#" class="o_dashboard_action" name="crm.action_your_pipeline">
+                                        <span class="o_highlight" t-esc="item"></span><br/>
+                                    </a>
+                            </td>
+                        </tr>
+
+                        <tr >
+                            <td class="o_text">
+                                <div style="font-size:15px;" class="o_highlight"> Updated in the last two weeks </div>
+                            </td>
+
+                            <td title="Total Fortnight Prospects" class="o_main">
+                                <a href="#" class="o_dashboard_action" name="investors_dashboard.investor_fortnight_dashboard_action">
+                                    <span class="o_highlight" t-esc="values['total_fortnight_count']"></span><br/>
+                                </a>
+                            </td>
+
+                            <td title= "Fortnight Stage Count" t-foreach="values['fortnight_stage_count']" t-as="item" class="o_main">
+                                <a href="#" class="o_dashboard_action" name="investors_dashboard.investor_fortnight_dashboard_action">
+                                    <span class="o_highlight" t-esc="item"></span><br/>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <table class="table">
+                    <caption></caption>
+                    <thead>
+                    <tr >
+                        <th class="o_main">
+                            <div style="font-size:15px;" class="o_highlight"> My Projects </div>
+                        </th>
+                        <th class="o_main">
+                            <div style="font-size:15px;" class="o_highlight"> Total </div>
+                        </th>
+                        <th  t-foreach='values["project_dashboard_stage_name"]' t-as="item" class="o_main">
+                            <div style="font-size:15px;" class="o_highlight">
+                                <span class="o_highlight" t-esc="item"></span><br/>
+                            </div>
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="o_text">
+                            <div style="font-size:15px;" class="o_highlight">
+                                <span>Totals Projects</span>
+                            </div>
+                        </td>
+                        <td class="o_main">
+                            <!-- <a href="#" class="o_dashboard_action" name="project.open_view_project_all_config_act_config_act"> -->
+                            <a href="#" class="o_dashboard_action" name="project.open_view_project_all_config_act">
+                                <span class="o_highlight" t-esc="values['project_dashboard_count_total']"></span>
+                            </a>
+                        </td>
+                        <td t-foreach='values["project_dashboard_count"]' t-as="item" class="o_main">
+                            <a href="#" class="o_dashboard_action" name="project.open_view_project_all_config_act">
+                                <span class="o_highlight" t-esc="item"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="o_text">
+                            <div style="font-size:15px;" class="o_highlight">
+                                <span>Value in USD</span>
+                            </div>
+                        </td>
+                        <td class="o_main">
+                            <a href="#" class="o_dashboard_action" name="project.open_view_project_all_config_act">
+                                <span class="o_highlight" t-esc="values['project_dashboard_amount_total']"></span>
+                            </a>
+                        </td>
+                        <td t-foreach='values["project_dashboard_amount"]' t-as="item" class="o_main">
+                            <a href="#" class="o_dashboard_action" name="project.open_view_project_all_config_act">
+                                <span class="o_highlight" t-esc="item"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="o_text">
+                            <div style="font-size:15px;" class="o_highlight">
+                                <span>Jobs</span>
+                            </div>
+                        </td>
+                        <td class="o_main">
+                            <a href="#" class="o_dashboard_action" name="project.open_view_project_all_config_act">
+                                <span class="o_highlight" t-esc="values['project_dashboard_job_total']"></span>
+                            </a>
+                        </td>
+                        <td t-foreach='values["project_dashboard_job"]' t-as="item" class="o_main">
+                            <a href="#" class="o_dashboard_action" name="project.open_view_project_all_config_act">
+                                <span class="o_highlight" t-esc="item"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="o_text">
+                            <div style="font-size:15px;" class="o_highlight">
+                                <span>Updated in the last two weeks</span>
+                            </div>
+                        </td>
+                        <td class="o_main">
+                            <a href="#" class="o_dashboard_action" name="investors_dashboard.project_dashboard_fortnight_contact">
+                                <span class="o_highlight" t-esc="values['project_dashboard_fortnight_total']"></span>
+                            </a>
+                        </td>
+                        <td t-foreach='values["project_dashboard_fortnight"]' t-as="item" class="o_main">
+                            <a href="#" class="o_dashboard_action" name="investors_dashboard.project_dashboard_fortnight_contact">
+                                <span class="o_highlight" t-esc="item"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+
+                <table class="table">
+                    <caption></caption>
+                    <thead>
+                        <tr>
+                            <th class="o_main">
+                                <div style="font-size:15px;" class="o_highlight">
+                                    <span> Projects Impact</span>
+                                </div>
+                            </th>
+                            <th t-foreach="values['dashboard_quarter_prospect_name']" t-as="item" class="o_main">
+                                <div style="font-size:15px;" class="o_highlight">
+                                    <span class="o_highlight" t-esc="item"></span>
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="o_text">
+                            <div style="font-size:15px;" class="o_highlight">
+                                <span> Number of projects submitted </span>
+                            </div>
+                        </td>
+                        <td t-foreach="values['dashboard_quarter_prospect']" t-as="item" class="o_main">
+                            <a href="#" class="o_dashboard_action" name="investors_dashboard.project_dashboard_prospective">
+                                <span class="o_highlight" t-esc="item"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="o_text">
+                            <div style="font-size:15px;" class="o_highlight">
+                                <span> Number of projects registered </span>
+                            </div>
+                        </td>
+                        <td class="o_main" t-foreach="values['dashboard_quarter_register']" t-as="item">
+                            <a href="#" class="o_dashboard_action" name="investors_dashboard.project_dashboard_registered">
+                                <span class="o_highlight" t-esc="item"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="o_text">
+                            <div style="font-size:15px;" class="o_highlight">
+                                <span> Total value in USD of projects registered </span>
+                            </div>
+                        </td>
+                        <td class="o_main" t-foreach="values['dashboard_quarter_amount']" t-as="item">
+                            <a href="#" class="o_dashboard_action" name="investors_dashboard.project_dashboard_registered">
+                                <span class="o_highlight" t-esc="item"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="o_text">
+                            <div style="font-size:15px;" class="o_highlight">
+                                <span> Total number of jobs linked to projects registered </span>
+                            </div>
+                        </td>
+                        <td class="o_main" t-foreach="values['dashboard_quarter_jobs']" t-as="item">
+                            <a href="#" class="o_dashboard_action" name="investors_dashboard.project_dashboard_registered">
+                                <span class="o_highlight" t-esc="item"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+
+                <table class="table">
+                    <caption></caption>
+                    <thead>
+                        <tr>
+                            <th class="o_main">
+                                <div style="font-size:15px;" class="o_highlight">
+                                My Investment
+                                </div>
+                            </th>
+                            <th class="o_main">Total</th>
+                            <th class="o_main">Pre-project</th>
+                            <th class="o_main">Project</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td class="o_text">Totals</td>
+                        <td class="o_main">
+                            <a href="#" class="o_dashboard_action" name="investors_dashboard.action_res_partner_company_dashboard">
+                                <span class="o_highlight" t-esc="values['total_company_stats']"></span>
+                            </a>
+                        </td>
+                        <td class="o_main">
+                            <a href="#" class="o_dashboard_action" name="investors_dashboard.action_res_partner_company_dashboard">
+                                <span class="o_highlight" t-esc="values['reinvest_dashboard_records']"></span>
+                            </a>
+                        </td>
+                        <td class="o_main">
+                            <a href="#" class="o_dashboard_action" name="investors_dashboard.action_res_partner_company_dashboard">
+                                <span class="o_highlight" t-esc="values['company_dashboard_records']"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+     <div t-if="show_demo or values" class="o_investor_dashboard_two">
+            <div t-attf-class="#{show_demo ? 'o_demo' : ''}">
+                <div class="container">
+                    <div class="row">
+                        <h1 style="text-align:center;">My Tasks</h1>
+                        <!-- <button class="btn btn-sm btn-link o_investor_activity" title="Log or schedule an activity">
+                            <i class="fa fa-clock-o"/> <t t-if="isMobile">Activity</t><t t-else="">Schedule activity</t>
+                            Create a Task
+                        </button> -->
+                        <!-- <a href="#" class="o_dashboard_action" name="investors_dashboard.investor_task_action">
+                            <span class="o_highlight"> Schedule a Task</span>
+                        </a> -->
+                    </div>
+                </div>
+                    <t>
+                        <div class="o_chatter oe_chatter">
+                        <div class="o_mail_thread">
+                        <div class="o_thread_date_separator o_border_dashed" data-toggle="collapse" data-target="#o_chatter_planned_tasks">
+                            <span class="o_thread_date btn">
+                                <i class="fa fa-fw fa-caret-down"/>
+                                Planned Tasks
+                                <small class="o_chatter_planned_activities_summary ml8">
+                                    <span class="label img-circle label-danger"><t t-esc="nbOverdueActivities"/></span>
+                                    <span class="label img-circle label-warning"><t t-esc="nbTodayActivities"/></span>
+                                    <span class="label img-circle label-success"><t t-esc="nbPlannedActivities"/></span>
+                                </small>
+                            </span>
+                        </div>
+                        <div class="o_mail_activity o_field_widget">
+                            <div id="o_chatter_planned_tasks" class="collapse in">
+                                <t t-foreach="values['my_activities_list']" t-as="activity">
+                                    <div class="o_thread_message" style="margin-bottom: 10px">
+                                        <div class="o_thread_message_sidebar">
+                                            <div class="o_avatar_stack">
+                                                <img t-attf-src="/web/image#{activity.user_id_id >= 0 ? ('/res.users/' + activity.user_id_id + '/image_small') : ''}" class="o_thread_message_avatar img-circle mb8" t-att-title="activity.user_id"/>
+                                                <i t-att-class="'o_avatar_icon fa ' + activity.icon + ' bg-' + (activity.state == 'planned'? 'success' : (activity.state == 'today'? 'warning' : 'danger')) + '-full'"
+                                                t-att-title="activity.activity_type_id"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="o_thread_message_core">
+                                            <div class="o_mail_info">
+                                                <a t-att-href="'/web#id='+(activity.res_id)+'&amp;view_type=form&amp;model='+(activity.res_model)+'&amp;menu_id=111'" role="action">
+                                                    <strong>
+                                                        <em> By </em>
+                                                    <span t-attf-class="o_activity_date o_activity_color_#{activity.state}"><t t-esc="activity.date_deadline" /></span></strong>:
+                                                    <strong t-if="activity.summary"> &#8220;<t t-esc="activity.summary"/>&#8221;</strong>
+                                                    <strong t-if="!activity.summary"> <t t-esc="activity.activity_type_id" /></strong>
+                                                    <em> for </em>
+                                                    <t t-esc="activity.user_id" />
+                                                </a>
+                                                <a class="btn btn-link btn-info text-muted collapsed o_activity_info ml4" role="button" data-toggle="collapse" t-attf-data-target="#o_chatter_activity_info_#{activity.id}">
+                                                    <i class="fa fa-info-circle"></i>
+                                                </a>
+                                                <div class="o_thread_message_collapse collapse" t-attf-id="o_chatter_activity_info_#{activity.id}">
+                                                    <dl class="dl-horizontal well">
+                                                        <dt>Activity type</dt>
+                                                        <dd >
+                                                            <t t-esc="activity.activity_type_id"/>
+                                                        </dd>
+                                                        <dt>Created on</dt>
+                                                        <dd >
+                                                            <t t-esc="activity.create_date"/>
+                                                        </dd>
+                                                        <dt>Assigned to</dt>
+                                                        <dd >
+                                                            <img t-attf-src="/web/image#{activity.user_id_id >= 0 ? ('/res.users/' + activity.user_id_id + '/image_small') : ''}" height="18" width="18" class="img-circle mr4" t-att-title="activity.user_id[1]"/>
+                                                            <b><t t-esc="activity.user_id"/></b>
+                                                            <em>, due on </em><span t-attf-class="o_activity_color_#{activity.state}"><t t-esc="activity.date_deadline"/></span>
+                                                        </dd>
+                                                    </dl>
+                                                </div>
+                                            </div>
+                                            <div t-if="activity.note" class="o_thread_message_note small">
+                                                <t t-raw="activity.note"/>
+                                            </div>
+                                            <!-- <div class="o_thread_message_tools btn-group">
+                                                <a href="#" class="btn btn-link btn-success text-muted btn-sm o_activity_done o_activity_link mr8" t-att-data-activity-id="activity.id" t-att-data-previous-activity-type-id="activity.activity_type_id_id" data-toggle="popover">
+                                                    <i class="fa fa-check"/> Mark Done
+                                                </a>
+                                                <a href="#" class="btn btn-link btn-default text-muted btn-sm o_activity_edit o_activity_link" t-att-data-activity-id="activity.id">
+                                                    <i class="fa fa-pencil"/> Edit
+                                                </a>
+                                                <a href="#" class="btn btn-link btn-sm btn-danger text-muted o_activity_unlink o_activity_link" t-att-data-activity-id="activity.id">
+                                                    <i class="fa fa-times"/> Cancel
+                                                </a>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    </t>
+                        <!-- <table class="table table-hover">
+                            <tr>
+                              <td><b> Task Summary  </b></td>
+                              <td><b> Deadline </b></td>
+                          </tr>
+                            <tr>
+                                <t t-if="values['my_activities_list'] == '' ">
+                                <td>
+                                     <span class="color: red">No new tasks/activities to display...</span>
+                                </td>
+                                 </t>
+                            </tr>
+                           <t t-foreach="values['my_activities_list']" t-as="i">
+                                <tr>
+                                <td>
+                                     <a title="Click to View"
+                                        t-att-href="'/web#id='+(i.res_id)+'&amp;view_type=form&amp;model='+(i.res_model)">
+                                   <t t-raw="i.summary" />
+                                    </a>
+                                 </td>
+                                <td><t t-esc="i.date_deadline" /></td>
+                                <td> <a title="Click to View"
+                                        t-att-href="'/web#id='+(i.res_id)+'&amp;view_type=form&amp;model='+(i.res_model)">
+                                    <i class="fa fa-comments"></i>
+                                    </a></td>
+                                </tr>
+                            </t>
+                </table> -->
+
+                </div><div t-attf-class="#{show_demo ? 'o_demo' : ''}">
+                <h1 style="text-align:center;">Chatter</h1>
+                <table class="hidden-xs table table-condensed">
+                    <tr>
+                        <td class="o_text">
+                            <div id="issues_by_category">
+                                 <div style="font-size:15px;" class="o_highlight">   </div>
+                                   <div style="background-color:#194A9E; color:#fff" id="my_chatter_feed">
+                                        <tr>
+                                            <td><b> Messages </b></td>
+                                            <td><b> From </b></td>
+                                        </tr>
+                                        <tr>
+                                            <t t-if="values['user_messages_list'] == '' ">
+                                                <td>
+                                                    <span class="color: red">No new messages to display...</span>
+                                                </td>
+                                            </t>
+                                        </tr>
+                                        <t t-foreach="values['user_messages_list']" t-as="i">
+                                            <tr>
+                                            <td>
+                                                <a title="Click to View" t-att-href="'/mail/view?message_id='+(i.id)">
+                                                    <t t-raw="i.message" />
+                                                </a>
+                                             </td>
+                                            <td>
+                                                <t t-esc="i.from" />
+                                            </td>
+                                            <td>
+                                                <a title="Click to View and Reply" t-att-href="'/mail/view?message_id='+(i.id)">
+                                                    <i class="fa fa-comments"></i>
+                                                </a>
+                                            </td>
+                                            </tr>
+                                        </t>
+                                    </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+        <!-- ticker -->
+        <script type="text/javascript" src="/investors_dashboard/static/src/js/vticker.js"></script>
+        <script type="text/javascript" src="/investors_dashboard/static/src/js/ticker_script.js"></script>
+    </t>
+</templates>

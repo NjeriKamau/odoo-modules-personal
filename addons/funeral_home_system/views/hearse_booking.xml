@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="funeral_home_system.list">
+      <field name="name">Hearse book list</field>
+      <field name="model">funeral_home.hearse.booking</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+
+          </header>
+          <sheet>
+            <group string="Client Details">
+              <field name="fh_admission_tag_no"/>
+              <field name="fh_name_of_deceased"/>
+              <field name="booking_date"/>
+              <field name="venue"/>
+            </group>
+            <group string="Burial Details">
+              <field name="burial_date"/>
+              <field name="burial_day"/>
+              <field name="burial_location"/>
+              <field name="near_market"/>
+              <field name="distance"/>
+              <field name="service"/>
+              <field name="service_locale"/>
+            </group>
+            <group string="Relation With Deceased">
+              <field name="person_booking"/>
+              <field name="person_id"/>
+              <field name="relationship"/>
+              <field name="tel_no"/>
+              <field name="dispach_time"/>
+              <field name="signature"/>
+            </group>
+          </sheet>
+          <div class="oe_chatter">
+              <field name="message_follower_ids" widget="mail_followers"/>
+              <!-- <field name="activity_ids" widget="mail_activity"/> -->
+              <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="hearse_action_window">
+      <field name="name">Hearse</field>
+      <field name="res_model">funeral_home.hearse.booking</field>
+      <!-- <field name="view_type">form</field> -->
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="funeral_home.action_server">
+      <field name="name">funeral_home server</field>
+      <field name="model_id" ref="model_funeral_home_funeral_home"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+
+
+    <!-- menu categories -->
+
+<!--     <menuitem name="Women Clothing" id="funeral_home_menu_1" parent="funeral_home.menu_root" action="funeral_home.action_window" sequence="90"/> -->
+      <!-- <menuitem id="funeral_home_menu_1" name="Women Clothing" parent="funeral_home_root" action="funeral_home.action_window" sequence="10"/> -->
+      <menuitem id="funeral_home_hearse_booking" name="Hearse Booking" parent="menu_funeral_home_root" action="hearse_action_window" sequence="40"/>
+
+<!--     <menuitem name="Menu 2" id="funeral_home.menu_2" parent="funeral_home.menu_root"/>
+ -->
+    <!-- actions -->
+
+    <!-- <menuitem name="List" id="funeral_home.menu_1_list" parent="funeral_home.menu_1"
+              action="funeral_home.action_window"/>
+    <menuitem name="Server to list" id="funeral_home" parent="funeral_home.menu_2"
+              action="funeral_home.action_server"/> -->
+
+  </data>
+</odoo>

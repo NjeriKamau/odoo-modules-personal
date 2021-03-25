@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data> 
+ <!-- Hide form data -->
+        <record id="res_partner_investor_form" model="ir.ui.view">
+            <field name="name">investor.res.partner.addons.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="res_partner_addons.res_partner_sales_replacement_form"/>
+            <field name="priority" eval="80"/>
+            <field name="arch" type="xml">
+                
+                <xpath expr="//notebook" position="after">
+                    <footer>
+                            <button name="save_company_from_investor"  type="object" class="btn-primary">
+                                Save and Close
+                            </button>
+                            <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </xpath>
+
+            </field>
+        </record>
+   </data>
+</odoo>
+
+

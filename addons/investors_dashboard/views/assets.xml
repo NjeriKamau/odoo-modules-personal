@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<odoo>
+    <template id="assets_backend" name="Investors Dashboard assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/investors_dashboard/static/src/less/investors.less"/>
+            <link rel="stylesheet" href="/investors_dashboard/static/src/less/investor_task.less"/>
+            <link rel="stylesheet" href="/investors_dashboard/static/src/less/invest_dashboard_styles.less"/>
+            <link rel="stylesheet" href="/investors_dashboard/static/src/css/portal_investors_dash.css"/>
+            <script type="text/javascript" src="/investors_dashboard/static/src/js/investor_dashboard.js"></script>
+        </xpath>
+    </template>
+
+
+</odoo>

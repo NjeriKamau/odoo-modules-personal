@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="client_clothing_record" model="ir.ui.view">
+			<field name="name">Particulars Of The Deceased</field>
+			<field name='model'>funeral_home.client.clothes</field>
+			<field name="arch" type="xml">
+				<form>
+					<header>
+						<!-- <button string="Set to concept" type="object" name="concept_progressbar" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+
+						<button string="Set to In-Progress" type="object" name="started_progressbar" class="oe_highlight" attrs="{'invisible': [('state','!=','draft')]}"/>
+
+						<button string="Set to Done" type="object" name="progress_progressbar" class="oe_highlight" attrs="{'invisible': [('state','!=','progress')]}"/> -->
+
+
+						<!-- <field name="state" widget="statusbar"/> -->
+					</header>
+					<sheet>
+							<!-- group containing client info -->
+						<group>
+							<field name="reg_no"/>
+							<!-- <field name="client_name" />				 -->
+							<field name="depart_date" class="oe_inline"/>
+						</group>
+						<group name="List Of Items Delivered">
+							<field name="coffin_type" />
+							<field name="cross_type" />
+							<field name="supplier" class="oe_inline"/>
+						</group>
+						<group name="Clothing Items and Description">
+					    	<tree string="Reference">
+                                <field name="clothing_items"/>
+                            </tree>							
+						</group>
+
+					    <group>					    	
+							<field name="baby_wear"/>
+							<field name="receive_officer"/>
+							<field name="receive_date"/>
+					    </group>
+						<h3>Declaration</h3>
+						<p>
+							I understand that whereas due care shall be taken to ensure no loss or damage of the items hereby delivered, the Kenyatta University Funeral Home shall not be held liable should any loss or damage occur.
+						</p>
+						<!-- Name of delivering relative -->
+						<h3>Sign</h3>
+						<field name="del_relative" class="oe_inline" />
+						<field name="rel_date" class="oe_inline"/>
+					</sheet>
+					<div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <!-- <field name="activity_ids" widget="mail_activity"/> -->
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+				</form>
+			</field>
+		</record>
+
+      <record id="clothing_record_view_tree" model="ir.ui.view">
+          <field name="name">funeral Home Clothing Tree View</field>
+          <field name="model">client.clothes</field>
+          <field name="arch" type="xml">
+      	      <tree>
+      	          <field name="reg_no"/>
+      	          <field name="depart_date"/>
+      	      </tree>
+      	  </field>
+          <field name="name">funeral_home_clothing_tree_view</field>
+          <field name="model">funeral_home.client.clothes</field>
+          <field name="arch" type="xml">
+      	      <tree>
+      	          <field name="fh_admission_tag_no"/>
+      	          <field name="fh_name_of_deceased"/>
+      	          <field name="del_relative"/>
+      	          <field name="receive_officer"/>
+      	      </tree>
+      	  </field>
+      </record>
+
+		<record id="client_record_clothing" model="ir.actions.act_window">
+			<field name="name">Record of Clothing Particulars</field>
+			<field name="res_model">client.clothes</field>
+			<field name="res_model">funeral_home.client.clothes</field>
+			<!-- <field name="view_type">form</field> -->
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem id="clientrecord_clothing" name="Particulars for the Deceased" parent="menu_funeral_home_inventory" action=
+      	"client_record_clothing" sequence="21" />
+      	
+	</data>
+</odoo>

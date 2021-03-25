@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Pipeline Projects where x_state='registered' -->
+        <record id="project_dashboard_registered" model="ir.actions.act_window">
+            <field name="name">Projects Impact -> Registered Projects</field>
+            <field name="res_model">project.project</field>
+            <field name="view_type">form</field>
+            <field name="context">{'group_by': ['write_date:quarter']}</field>
+            <field name="domain">[('x_state', '=','registered'),('user_id', '=', uid)]</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'kanban', 'view_id': ref('res_partner_extend.dashboard_quarterly_kanban')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('project.edit_project')}),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('project.view_project')})
+                ]" />
+            <field name="search_view_id" ref="project.view_project_project_filter" />
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create a new project.
+                </p>
+                <p>
+                    Organize your activities by creating projects.
+                </p>
+            </field>
+        </record>
+        <!-- Pipeline Projects where x_state='prospective' -->
+        <record id="project_dashboard_prospective" model="ir.actions.act_window">
+            <field name="name">Projects Impact -> Prospective Projects</field>
+            <field name="res_model">project.project</field>
+            <field name="view_type">form</field>
+            <field name="context">{'group_by': ['write_date:quarter']}</field>
+            <field name="domain">[('x_state', '=', 'prospective'),('user_id', '=', uid)]</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'kanban', 'view_id': ref('res_partner_extend.dashboard_quarterly_kanban')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('project.edit_project')}),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('project.view_project')})
+                ]" />
+            <field name="search_view_id" ref="project.view_project_project_filter" />
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create a new project.
+                </p>
+                <p>
+                    Organize your activities by creating projects.
+                </p>
+            </field>
+        </record>
+
+        <!-- Pipeline Projects where Contacted during the last two weeks-->
+        <record id="project_dashboard_fortnight_contact" model="ir.actions.act_window">
+            <field name="name">My Projects -> Contacted during the last two weeks</field>
+            <field name="res_model">project.project</field>
+            <field name="view_type">form</field>
+            <field name="context">{'group_by': 'stage_id'}</field>
+            <field name="domain">[('user_id', '=', uid),('write_date', '&gt;=', (context_today()-datetime.timedelta(weeks=2)).strftime('%Y-%m-%d'))]</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'kanban', 'view_id': ref('project.project_view_kanban')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('project.edit_project')}),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('project.view_project')})
+                ]" />
+            <field name="search_view_id" ref="project.view_project_project_filter" />
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create a new project.
+                </p>
+                <p>
+                    Organize your activities by creating projects.
+                </p>
+            </field>
+        </record>
+
+        <!-- Investors Dashboard Pipeline -->
+        <record model="ir.actions.act_window" id="investor_fortnight_dashboard_action">
+            <field name="name">Prospect Pipeline -> Contacted during the last two weeks </field>
+            <field name="res_model">crm.lead</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('type','=','opportunity'),('write_date', '&gt;=', (context_today()-datetime.timedelta(weeks=2)).strftime('%Y-%m-%d'))]</field>
+            <field name="context">{
+                    'default_type': 'opportunity',
+                    'search_default_assigned_to_me': 1,
+                    'form_view_initial_mode': 'edit',
+            }</field>
+            <field name="flags">{'initial_mode':'edit'}</field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'kanban', 'view_id': ref('crm.crm_case_kanban_view_leads')}),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('crm.crm_case_tree_view_oppor')}),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('crm.crm_case_form_view_oppor')})]"/>
+            <field name="search_view_id" ref="crm.view_crm_case_opportunities_filter"/>
+            <field name="help" type="html">
+                <p>
+                    We help you keep track of your Prospect pipeline to follow
+                    up potential Prospects and better forecast your future revenues.
+                </p><p>
+                    You will be able to plan meetings and phone calls from
+                    prospects, attach related documents, track all discussions, and much more.
+                </p>
+            </field>
+        </record>
+
+        <!-- Tasks Dashboard Action View -->
+        <record id="investor_task_action" model="ir.actions.act_window">
+            <field name="name">Prospect Tasks</field>
+            <!-- <field name="type">ir.actions.act_window</field> -->
+            <field name="res_model">mail.activity</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="taregt">new</field>
+            <field name="context">{'default_res_model': 'crm.lead',
+                'default_res_name':'Prospect Task',
+                'default_res_id': '0',}</field>
+            <field name="view_id" ref="investors_dashboard.mail_activity_view_form_popup" />
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create a new Task.
+                </p>
+            </field>
+        </record>
+
+        <record id="action_res_partner_company_dashboard" model="ir.actions.act_window">
+            <field name="name">Companies</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="search_view_id" ref="res_partner_addons.res_partner_company_search"/>
+            <field name="context">{
+                'default_company_type': 'company',
+                'default_x_company_cat': 'company',
+                'default_is_company': True,
+                'default_invoice_warn': 'no-message',
+                'default_sale_warn': 'no-message',
+                'form_view_initial_mode': 'edit',
+                'search_default_type_company': 1,
+            }</field>
+            <field name="domain">[('x_company_cat', '=', 'company')]</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('res_partner_addons.res_partner_company_tree')}),
+                (0, 0, {'view_mode': 'kanban', 'view_id': ref('res_partner_addons.res_partner_company_kanban')})]"/>
+        </record>
+    </data>
+</odoo>

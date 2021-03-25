@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+<!-- ======== Funeral Home transfer ======== -->
+    <!-- ======== transfer form======== -->
+    <record id="view_funeral_home_transfer_form" model="ir.ui.view">
+      <field name="name">funeral_home.transfer.form</field>
+      <field name="model">funeral_home.transfer</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form name="fh_transfer_form_id" string="Transfer">
+            <!-- <header>
+                <button name="send_reservation_maill" type="object"
+                    string="Send Reservation Email" states="confirm" class="oe_highlight" />
+                <button name="confirmed_reservation" string="Confirm"
+                    states="draft" class="oe_highlight" type="object" />
+                <button name="create_folio" string="Create Folio" states="confirm"
+                    class="oe_highlight" type="object" />
+                <button name="cancel_reservation" string="Cancel Reservation"
+                    states="draft,confirm" class="oe_highlight" type="object" />
+                <button name="set_to_draft_reservation" string="Set to Draft"
+                    states="cancel" class="oe_highlight" type="object" />
+                <field name="state" widget="statusbar" />
+            </header> -->
+            <sheet name="fh_transfer_form_sheet_id">
+                <!-- group containing deceased info -->
+              <!-- <group> -->
+                <group string="Client Details">
+                  <field name="fh_admission_tag_no"/>
+                  <field name="deceased_name_transfer" />
+                <!-- </group>
+                <group> -->
+                  <field name="date_transfer"/>
+                  <field name="fh_institution_of_origin"/>    
+                </group>              
+              <!-- </group> -->
+              <group>
+                <field name="fh_transfer_person" class="oe_inline"/>
+              </group>
+                  
+              <group>               
+                <!-- <field name="serving_officer"/> -->
+              </group>
+            </sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <!-- <field name="activity_ids" widget="mail_activity"/> -->
+                <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+            </div>
+        </form>
+      </field>
+    </record>
+    
+    <!-- List (Tree) view - transfer -->
+    <record id="view_funeral_home_transfer_tree" model="ir.ui.view">
+      <field name="name">funeral_home.transfer.tree</field>
+      <field name="model">funeral_home.transfer</field>
+      <field name="arch" type="xml">
+        <tree delete="false">
+          <field name="date_transfer" />
+          <field name="deceased_name_transfer" />
+          <field name="fh_institution_of_origin" />
+          <!-- <field name="fh_name_of_kin" />
+          <field name="fh_id_passport_of_kin" />
+          <field name="fh_telephone_contact_kin" /> 
+          <field name="fh_destined_county" />
+          <field name="fh_burial_permit_number" /> -->
+        </tree>
+      </field>
+    </record>
+
+    <!-- Search view of funeral home transfer -->
+    <record id="view_funeral_home_transfer_filter" model="ir.ui.view">
+        <field name="name">funeral_home.transfer.filter</field>
+        <field name="model">funeral_home.transfer</field>
+        <field name="arch" type="xml">
+            <search string="transfer">
+                
+                <field name="deceased_name_transfer" />
+                <field name="date_transfer" />
+                <!-- <field name="fh_name_of_kin" />
+                <field name="fh_id_passport_of_kin" /> 
+                <field name="fh_telephone_contact_kin" /> -->
+                <field name="fh_institution_of_origin" />
+                <newline />
+                <!-- <group expand="0" string="Group By">
+                    <filter name="partner_id" string="Guest Name" icon="terp-personal"
+                        domain="[]" context="{'group_by':'partner_id'}" />
+                    <filter string="Order By Month" domain="[]"
+                        context="{'group_by':'date_fh_order'}" />
+                </group> -->
+            </search>
+        </field>
+    </record>
+    
+        <!-- Action funeral home Transfer -->
+    <record id="action_funeral_home_transfer_tree_all" model="ir.actions.act_window">
+        <field name="name">Transfer</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">funeral_home.transfer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- menu items -->
+    <menuitem name="Transfer" id="menu_action_funeral_home_transfer_tree_all"
+        action="action_funeral_home_transfer_tree_all" parent="menu_funeral_home_admission"
+        sequence="13" /> 
+
+  </data>
+</odoo>

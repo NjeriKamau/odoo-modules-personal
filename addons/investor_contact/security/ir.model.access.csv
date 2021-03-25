@@ -1,0 +1,5 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+,,,,,,,
+"investor_hidden_menuy","lead hidden menu","model_crm_lead","investor_hidden_menu",0,0,0,0
+access_prospect_source_user,investor.source.user,model_investor_source,base.group_user,1,1,1,0
+access_investor_reftype_user,investor.reftype.user,model_investor_reftype,base.group_user,1,1,1,0

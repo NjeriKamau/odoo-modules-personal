@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+		<template id="contactus_form" inherit_id="website_crm.contactus_form">
+            <xpath expr="//form[@action='/website_form/']" position="replace">
+
+			<form action="/website_form_override/" method="post" data-model_name="crm.inquiry" data-success_page="/page/website_crm.contactus_thanks" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data" id="myForm">
+				<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+				<div class="row">
+					<div class="col-xs-6">
+							<div class="form-group">
+								<label for="title">Prefix</label>
+								<select id="title" name="title" class="form-control o_website_form_select" t-att-value="request.params.get('title', '')">
+									<!--Include the prefixes here-->
+								</select>
+							</div>
+							<div class="form-group form-field o_website_form_required_custom">
+								<label for="contact_name">Contact</label>
+								<input type="text" class="form-control o_website_form_input" name="contact_name" placeholder="Name of Contact Person in Company" t-att-value="request.params.get('contact_name', '')" required=""/>
+							</div>
+							<div class="form-group">
+								<label for="function">Position</label>
+								<input type="text" class="form-control o_website_form_input" name="function" placeholder="Position of Contact Person" t-att-value="request.params.get('function', '')"/>
+							</div>
+							<div class="form-group form-field o_website_form_required_custom">
+								<label for="email_from">Email</label>
+								<input type="email" class="form-control o_website_form_input" name="email_from" placeholder="Email of Contact Person" t-att-value="request.params.get('email_from', '')" required=""/>
+							</div>
+							<div class="form-group">
+								<label for="phone">Phone Number</label>
+								<input type="phone" name="phone" class="form-control o_website_form_input" placeholder="Phone number of Contact Person" t-att-value="request.params.get('phone', '')"/>
+							</div>
+					</div>
+
+					<div class="col-xs-2"></div>
+					<div class="col-xs-4">
+							<div class="form-group form-field o_website_form_required_custom">
+								<label for="partner_name">Company</label>
+								<input type="text" name="partner_name" class="form-control o_website_form_input" t-att-value="request.params.get('partner_name', '')" required=""/>
+							</div>
+							
+							<div class="form-group">
+								<label for="sector">Sector</label>
+								<select id="sector" name="sector" class="form-control o_website_form_select" t-att-value="request.params.get('sector', '')">
+									<!--Include the prefixes here-->
+								</select>
+							</div>
+							<div class="form-group form-field o_website_form_required_custom">
+								<label for="cert">CERT</label>
+								<input type="text" name="cert" class="form-control o_website_form_input" t-att-value="request.params.get('cert', '')" required=""/>
+							</div>
+							<div class="form-group form-field o_website_form_required_custom">
+								<label for="tin">TIN</label>
+								<input type="text" name="tin" class="form-control o_website_form_input" t-att-value="request.params.get('tin', '')" required=""/>
+							</div>
+							<div class="form-group form-field o_website_form_required_custom">
+								<label for="type_invest">Type of Investment</label>
+								<select id="type_invest" name="type_invest" class="form-control o_website_form_select" t-att-value="request.params.get('type_invest', '')" required="">
+									<option value="New">New</option>
+									<option value="Reinvestment">Reinvestment</option>
+								</select>
+							</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-4">
+							<div class="form-group form-field o_website_form_required_custom">
+								<label for="name">Project Name</label>
+								<input class="form-control o_website_form_input" name="name" type="text" t-att-value="request.params.get('name', '')" required=""/>
+							</div>
+							<div class="form-group form-field o_website_form_required_custom">
+								<label for="start_date">Project Start Date</label>
+								<input type="date" name="start_date" class="form-control o_website_form_input" t-att-value="request.params.get('start_date', '')" required=""/>
+							</div>
+							<div class="form-group">
+								<label for="investment_amount">Project Investment Amount</label>
+								<input type="number" name="investment_amount" class="form-control o_website_form_input" placeholder="Amount in dollars ($)" t-att-value="request.params.get('investment_amount', '')"/>
+							</div>
+							<div class="form-group">
+								<label for="p_job_creation">Projected Job Creation</label>
+								<input type="text" name="p_job_creation" class="form-control o_website_form_input" t-att-value="request.params.get('p_job_creation', '')"/>
+							</div>
+
+							<div class="form-group">
+								<label for="project_description">Request Summary</label>
+								<textarea rows='6' cols='10' class="form-control o_website_form_input" name="project_description" placeholder="Request for investment information" t-att-value="request.params.get('contact_name', '')" required=""></textarea>
+							</div>
+					</div>
+
+					<div class="col-xs-2"></div>
+
+					<div class="col-xs-6">
+							<div class="form-group">
+								<label for="p_address">Project Address</label>
+								<input type="text" name="p_address" class="form-control o_website_form_input" t-att-value="request.params.get('p_address', '')"/>
+							</div>
+							<div class="form-group form-field o_website_form_required_custom">
+								<label for="city">City</label>
+								<input type="text" name="city" class="form-control o_website_form_input" t-att-value="request.params.get('city', '')" required=""/>
+							</div>						
+							<div class="form-group form-field o_website_form_required_custom">
+								<label for="state">State</label>
+								<input type="text" name="state" class="form-control o_website_form_input" t-att-value="request.params.get('state', '')" required=""/>
+							</div>
+							<div class="form-group form-field o_website_form_required_custom">
+								<label for="country_id">Country of Origin</label>
+								<select id="country_id" name="country_id" class="form-control o_website_form_select" t-att-value="request.params.get('country_id', '')" required="">
+									<!--Include the prefixes here-->
+								</select>	
+							</div>
+
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-12">
+					        <div class="form-group" style="margin-top:20px">
+								<div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+									<button id="send_inquiry" class="btn btn-success btn-block btn-lg o_website_form_send"><i class="fa fa-reply"></i> Send</button>
+									<span id="o_website_form_result"></span>
+								</div>
+                        	</div>
+					</div>
+				</div>
+			</form>
+
+			</xpath>
+		</template>
+
+        <template id="contactus_thanks" name="Contact us">
+            <t t-call="website.layout">
+              <div id="wrap">
+                <div class="oe_structure"/>
+                <div class="container">
+                    <h2>Thank you for your inquiry </h2>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="alert alert-success">
+                                Your message has been sent successfully.
+                                <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
+                            </div>
+                            <p>
+                                We will get back to you within 2 business days.
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <t t-call="website.company_description"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+              </div>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>
